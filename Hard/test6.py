@@ -12,17 +12,18 @@ import math
 import time
 
 
-A = np.array([i* random.randint(2,10**9) for i in range(1, 10**2+1)])
-B = np.array([i* random.randint(2,10**9) for i in range(1, 10**2+1)])
+A = np.array([i* random.randint(2,10**3) for i in range(1, 10+1)])
+B = np.array([i* random.randint(2,10**3) for i in range(1, 10+1)])
+
+print (A,B)
 counter = 0
 
 
 
 def coprime_checker (Ai, Bj):
     
-    global counter
-    
     factor_counter = 0
+    
     a = Ai
     b = Bj
     
@@ -39,7 +40,6 @@ def coprime_checker (Ai, Bj):
     if a == 2:
         
         if b == 2:
-            
             return False
         
         else:

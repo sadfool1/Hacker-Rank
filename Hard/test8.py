@@ -1,11 +1,27 @@
-import math
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu May 14 15:17:12 2020
+
+@author: jameselijah
+"""
+
 import numpy as np
+import random
+import math
+import time
+
+
+A = np.array([i* random.randint(2,pow(10,3)) for i in range(1, pow(10,2))])
+B = np.array([i* random.randint(2,pow(10,3)) for i in range(1, pow(10,2))])
+
+print (A,B)
+counter = 0
 
 def coprime_checker (Ai, Bj):
     
-    global counter
-    
     factor_counter = 0
+    
     a = Ai
     b = Bj
     
@@ -22,7 +38,6 @@ def coprime_checker (Ai, Bj):
     if a == 2:
         
         if b == 2:
-            
             return False
         
         else:
@@ -119,6 +134,60 @@ def coprime_checker (Ai, Bj):
         else:
     
             return True
-        
-print (coprime_checker (2, 1))
+
+
+#A = np.array([2, 5, 6, 7])
+
+#B = np.array([4, 9, 10 ,12])
+
+
+def main(A, B):
+    global counter
+    global tempi
+    global tempj
+
+    #print (len(A),len(B))
     
+    tempi = []
+    tempj = []
+    
+    for i in range(0,len(A)):
+        for j in range(0,len(B)):
+            #print ("i = %d j = %d." % (i,j), end = '')
+            
+            if coprime_checker(int(A[i]), int(B[j])) == True:
+                pass
+            
+            else:
+                #print ("Deleting %d & %d" %(A[i], B[j]), end = '')
+                
+                tempi.append(i)
+                tempj.append(j)
+                
+                break
+                
+    
+    deleter(A, B, tempi[0],tempj[0])
+    
+
+def deleter(A, B, a,b):
+    global counter
+
+    try:
+        counter = counter + 1
+        A = np.delete(A, a, axis  = 0)
+        B = np.delete(B, b, axis  = 0)
+        
+        #print ("...DELETED")
+        main(A, B)
+        
+    except IndexError:
+        print ("The total Counter for this method = %d." % counter)
+        
+    
+    
+main(A, B)
+
+#print (len(B))
+
+#coprime_checker(int, int(j))
