@@ -33,9 +33,7 @@ try:
     
         result = computerGame(a, b)
     
-        fptr.write(str(result) + '\n')
     
-        fptr.close()
 
 except ValueError:
     print ("Make sure n is a valid integer.")
