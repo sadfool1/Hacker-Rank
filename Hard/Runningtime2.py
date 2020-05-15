@@ -29,11 +29,8 @@ def coprime_checker (Ai, Bj):
     """
     factor_counter = 0
     
-    a = Ai
-    b = Bj
-    
-    A_factor = {} #initialise 
-    B_factor = {} #initialise 
+    A_factor = {} #initialise dict
+    B_factor = {} #initialise dict
     
     for i in range(1, math.ceil(math.sqrt(Ai))):
         if Ai % i == 0:
@@ -53,28 +50,22 @@ def coprime_checker (Ai, Bj):
                 factor_counter = factor_counter + 1
                 continue
             else:
-                pass
+                if factor_counter > 1:
+                    break
+            
         if factor_counter > 1:
             break
     
     return False if factor_counter > 1 else True
 
 
-    
-#A = np.array([3, 7, 30])
-#B = np.array([6, 14, 15])
-
 def main(A, B):
-    global counter
     
     tempi = []
     tempj = []
  
 
-    for i in range(0,len(A)):
-        if len(tempi) > 1:
-            break
-        
+    for i in range(0,len(A)):   
         for j in range(0,len(B)):
             if coprime_checker(int(A[i]), int(B[j])) == True:
                 pass
@@ -82,7 +73,9 @@ def main(A, B):
                 tempi.append(i)
                 tempj.append(j)
                 break
-        
+            
+        if len(tempi) > 1:
+            break        
             
 
     deleter(A, B, tempi[0],tempj[0])
