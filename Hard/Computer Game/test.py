@@ -59,8 +59,8 @@ import math
 import time
 
 
-A = np.array([i* random.randint(2,pow(10,3)) for i in range(1, pow(10,3))])
-B = np.array([i* random.randint(2,pow(10,3)) for i in range(1, pow(10,3))])
+A = np.array([i* random.randint(2,pow(10,5)) for i in range(1, pow(10,2))])
+B = np.array([i* random.randint(2,pow(10,5)) for i in range(1, pow(10,2))])
 
 timeinit = time.process_time()
 
@@ -78,39 +78,28 @@ def coprime_checker (Ai, Bj):
         return False
     
     factor_counter = 0
-    if Ai > 1000 or Bj > 100000:
-        return coprime_checker_large_number (Ai, Bj)
         
-    A_factor = {} #initialise dict
-    B_factor = {} #initialise dict
+    A_factor = set([]) #initialise dict
+    B_factor = set([]) #initialise dict
     
     for i in range(1, Ai+1):
         
         if Ai % i == 0:
-            A_factor[i] = i
+            A_factor.add(i)
             
     for i in range(1, Bj+1):
         
         if Bj % i == 0:
-            B_factor[i] = i
+            B_factor.add(i)
     
     #print (A_factor,  B_factor)
     
-    for i, j in zip(A_factor, B_factor):
-        if A_factor[i] == B_factor[j]:
-            factor_counter = factor_counter + 1
-            continue
-        else:
-            if factor_counter > 1:
-                break
-    
-    return False if factor_counter > 1 else True
+    return False if len(A_factor.intersection(B_factor)) > 1 else True
 
 def coprime_checker_large_number (Ai, Bj):
 
     A_factor = {} #initialise dict
     B_factor = {} #initialise dict
-    
     factor_counter = 0
     
     for i in range(1, math.ceil(math.sqrt(Ai))):
